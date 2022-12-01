@@ -2,27 +2,30 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import Link from 'next/link';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Layout from '../components/layout/Layout';
 
 export default function Home({ blogs }) {
   return (
-    <div className={styles['container']}>
-      <Head>
-        <title>Demo Blog</title>
-      </Head>
-      <h1 className={styles['header']}>Welcome to my blog</h1>
-      <p className={styles['subtitle']}>
-        This is a subtitle idk what to type here
-      </p>
-      <ul className={styles['blog-list']}>
-        {blogs.map((blog) => (
-          <li key={blog.slug}>
-            <Link href={`/blog/${blog.slug}`}>
-              {blog.date}:{blog.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className='container text-center'>
+      <Layout>
+        <Head>
+          <title>Muslim Insight</title>
+        </Head>
+        <div>
+          <ul className=''>
+            {blogs.map((blog) => (
+              <li key={blog.slug} className='my-6 underline'>
+                <Link
+                  href={`/blog/${blog.slug}`}
+                  className='text-cyan-500 text-xl '
+                >
+                  {blog.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Layout>
     </div>
   );
 }

@@ -2,18 +2,25 @@ import fs from 'fs';
 import ReactMarkdown from 'react-markdown';
 import matter from 'gray-matter';
 import Head from 'next/head';
+import Layout from '../../components/layout/Layout';
+import SocialShare from '../../components/SocialShare';
 
 export default function Blog({ frontmatter, markdown }) {
   return (
-    <div>
+    <Layout>
       <Head>
         <title>Muslim Insight | {frontmatter.title}</title>
       </Head>
-      <h1>{frontmatter.title}</h1>
-      <span>{frontmatter.date}</span>
-      <hr />
-      <ReactMarkdown>{markdown}</ReactMarkdown>
-    </div>
+      <div className='bg-slate-200 px-5 py-5 md:py-10'>
+        <h1 className='text-xl font-semibold'>{frontmatter.title}</h1>
+        <span className='text-sm text-orange-700'>{frontmatter.date}</span>
+        <SocialShare page={frontmatter.title} />
+        <hr />
+        <ReactMarkdown className='leading-8 text-slate-800'>
+          {markdown}
+        </ReactMarkdown>
+      </div>
+    </Layout>
   );
 }
 
